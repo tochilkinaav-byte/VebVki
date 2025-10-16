@@ -1,4 +1,4 @@
-import CreateStudentDto from "@/dto/CreateStudentDto";
+import CreateStudent from "@/api/CreateStudentDto";
 import StudentInterface from "@/types/StudentInterface";
 
 export const getStudentsApi = async (): Promise<StudentInterface[]> => {
@@ -36,7 +36,7 @@ export const deleteStudentApi = async (studentId: number): Promise<number> => {
 };
 
 export const createStudentApi = async (
-  dto: CreateStudentDto
+  dto: CreateStudent
 ): Promise<StudentInterface | null> => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}students`, {

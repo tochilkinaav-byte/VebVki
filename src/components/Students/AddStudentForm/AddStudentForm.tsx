@@ -1,10 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import CreateStudentDto from '@/dto/CreateStudentDto';
+import CreateStudent from '@/api/CreateStudentDto';
 import styles from './AddStudentForm.module.scss';
 
 interface StudentCreatorFormProps {
-  createStudentMutate: (dto: CreateStudentDto) => void;
+  createStudentMutate: (dto: CreateStudent) => void;
 }
 
 export const AddStudentForm = ({ createStudentMutate }: StudentCreatorFormProps) => {
@@ -13,9 +13,9 @@ export const AddStudentForm = ({ createStudentMutate }: StudentCreatorFormProps)
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<CreateStudentDto>();
+  } = useForm<CreateStudent>();
 
-  const onSubmit = (data: CreateStudentDto) => {
+  const onSubmit = (data: CreateStudent) => {
     createStudentMutate(data);
     reset();
   };

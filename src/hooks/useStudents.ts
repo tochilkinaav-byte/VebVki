@@ -5,12 +5,12 @@ import {
   getStudentsApi,
 } from "@/api/studentsApi";
 import StudentInterface from "@/types/StudentInterface";
-import CreateStudentDto from "@/dto/CreateStudentDto";
+import CreateStudent from "@/api/CreateStudentDto";
 
 interface StudentsHookInterface {
   students: StudentInterface[];
   deleteStudentMutate: (studentId: number) => void;
-  createStudentMutate: (dto: CreateStudentDto) => void;
+  createStudentMutate: (dto: CreateStudent) => void;
 }
 
 const useStudents = (): StudentsHookInterface => {
@@ -87,8 +87,8 @@ const useStudents = (): StudentsHookInterface => {
    * Мутация создания студента
    */
   const createStudentMutate = useMutation({
-    mutationFn: async (dto: CreateStudentDto) => await createStudentApi(dto),
-    onMutate: async (newStudentDto: CreateStudentDto) => {
+    mutationFn: async (dto: CreateStudent) => await createStudentApi(dto),
+    onMutate: async (newStudentDto: CreateStudent) => {
       await queryClient.cancelQueries({ queryKey: ["students"] });
       const previousStudents = queryClient.getQueryData<StudentInterface[]>([
         "students",

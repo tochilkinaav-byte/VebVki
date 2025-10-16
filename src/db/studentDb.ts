@@ -3,7 +3,7 @@ import sqlite3 from "sqlite3";
 import type StudentInterface from "@/types/StudentInterface";
 import getRandomFio from "@/utils/getRandomFio";
 import FioInterface from "@/types/FioInterface";
-import CreateStudentDto from "@/dto/CreateStudentDto";
+import CreateStudent from "@/api/CreateStudentDto";
 
 sqlite3.verbose();
 
@@ -31,7 +31,7 @@ export const getStudentsDb = async (): Promise<StudentInterface[]> => {
 };
 
 export const createStudentDb = async (
-  dto: CreateStudentDto
+  dto: CreateStudent
 ): Promise<StudentInterface | null> => {
   const db = new sqlite3.Database(process.env.DB ?? "./db/vki-web.db");
 
